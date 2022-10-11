@@ -3,6 +3,16 @@
 #include <fstream>
 #include <string.h>
 
+/*
+Terminales de ómnibus
+La información de las terminales estará dada en un archivo de texto terminales.txt que deberá
+leerse al iniciar la aplicación.
+En cada línea del archivo estará la información de la terminal, separada por espacios:
+codigo nombre ciudad pais superficie #cantidad_terminales #destinos_nacionales
+#destinos_internacionales
+
+*/
+
 using namespace std;
 
 void lectura(string nombre_archivo);
