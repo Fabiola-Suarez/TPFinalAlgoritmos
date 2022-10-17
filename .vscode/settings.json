@@ -3,5 +3,6 @@
         "*.js": "javascriptreact",
         "xstring": "cpp",
         "vector": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
