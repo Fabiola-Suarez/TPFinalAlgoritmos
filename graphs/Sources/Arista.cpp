@@ -1,5 +1,7 @@
 #include "../Headers/Arista.h"
 
+Arista::Arista(){}
+
 Arista::Arista(NodoG* nodoOrigen, NodoG* nodoDestino, double distanciaEntre)
 {
     origen = nodoOrigen;

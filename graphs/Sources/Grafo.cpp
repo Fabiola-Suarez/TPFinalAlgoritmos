@@ -19,6 +19,7 @@ void Grafo::verNodos()
 {
     if (primero) {
         cout << ">>> Nodo: " << primero->obtenerCiudad() << endl;
-        cout << "  Aristas: " << primero->verAristas();
+        cout << " Aristas: " << endl;
+        primero->verAristas();
     };
 }
