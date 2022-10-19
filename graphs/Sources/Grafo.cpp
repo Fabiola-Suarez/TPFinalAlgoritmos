@@ -1,8 +1,8 @@
 #include "../Headers/Grafo.h"
 
-Grafo::Grafo(NodoG* primerNodo)
+Grafo::Grafo()
 {
-    primero = primerNodo;
+    numNodos = 0;
 }
 
 NodoG* Grafo::obtenerPrimero()
@@ -16,10 +16,35 @@ void Grafo::cambiarPrimero(NodoG* nuevoPrimero)
 }
 
 void Grafo::verNodos()
+{   
+    NodoG* aux = primero;
+    for(int i=0; i<=numNodos; i++){
+        aux->verDatos();
+        aux = aux->obtenerSiguiente();
+    }
+}
+
+void Grafo::eliminarNodos()
 {
-    if (primero) {
-        cout << ">>> Nodo: " << primero->obtenerCiudad() << endl;
-        cout << " Aristas: " << endl;
-        primero->verAristas();
-    };
+    while (numNodos != 0){
+        NodoG* borrar = primero;
+        NodoG* aux = borrar->obtenerSiguiente();
+        borrar->eliminarAristas();
+        delete borrar;
+        primero = aux;
+        numNodos--;
+    }
+}
+
+void Grafo::agregarNodo(NodoG* nodo)
+{
+    NodoG* aux = primero;
+    
+    for (int i=0; i<numNodos; i++) {
+        aux = aux->obtenerSiguiente();
+    }
+
+    aux->cambiarSiguiente(nodo);
+
+    numNodos++;
 }
