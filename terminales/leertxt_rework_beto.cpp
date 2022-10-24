@@ -119,11 +119,14 @@ void consultarTerminal(vector<Terminal> terminales)
             cout << "Cantidad de terminales: " << terminales[i].cantidadTerminales << endl;
             cout << "Destinos nacionales: " << terminales[i].destinosNacionales << endl;
             cout << "Destinos internacionales: " << terminales[i].destinosInternacionales << endl;
+            cout << endl;
             return;
         }
     }
     cout << "No se encontro la terminal" << endl;
+    cout << endl;
 }
+
 void mostrarOpciones()
 {
     cout << "Elija una opcion: " << endl;
@@ -132,6 +135,7 @@ void mostrarOpciones()
     cout << "3. Dar de baja una terminal" << endl;
     cout << "4. Mostrar todas las terminales" << endl;
     cout << "5. Salir" << endl;
+    cout << endl;
 };
 
 void darAltaTerminal(vector<Terminal> terminales)

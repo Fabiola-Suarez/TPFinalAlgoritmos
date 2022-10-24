@@ -3,34 +3,72 @@
 #include "NodoG.cpp"
 #include <windows.h>
 
-//int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevIns, LPSTR lpszArgument, int iShow)
+#include <iostream>
+#include <stdlib.h>
+#include <fstream>
+#include <string.h>
+
+// int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevIns, LPSTR lpszArgument, int iShow)
+
+void cargarNodos(Grafo *grafo);
+void cargarAristas(Grafo *grafo);
+void inicializarGrafo(Grafo *grafo);
+
 int main()
 {
-
-    NodoG* bsas = new NodoG("BSAS", "Buenos Aires");
-    NodoG* cord = new NodoG("COR" ,"Cordoba");
-    NodoG* ros = new NodoG("ROS", "Rosario");
-    
-    bsas->agregarArista(cord, 1200, 1.2);
-    bsas->agregarArista(ros, 3000, 2.4);
-
-    ros->agregarArista(bsas,3000, 3.2);
-
-    cord->agregarArista(ros, 200, 2.1);
-    
-    Grafo* grafo = new Grafo();
-
-    grafo->agregarNodo(bsas);
-    grafo->agregarNodo(cord);
-    grafo->agregarNodo(ros);
+    Grafo *grafo = new Grafo();
+    inicializarGrafo(grafo);
     grafo->verNodos();
-
-    cout << grafo->existeNodo("Buenos Aires") << endl;
-
-    //cout << grafo->obtenerNodo("Misiones")->obtenerCiudad() << endl;
-
-    cout << bsas->existeArista("MIS")<<endl;
 
     grafo->~Grafo();
     return 0;
+}
+
+void inicializarGrafo(Grafo *grafo)
+{
+    cargarNodos(grafo);
+    cargarAristas(grafo);
+}
+
+void cargarNodos(Grafo *grafo)
+{
+    ifstream archivo;
+    string linea;
+    string cod, nombre, ciudad, pais;
+    double superficie;
+    int cantidadTerminales, destinosNacionales, destinosInternacionales;
+
+    archivo.open("terminales.txt", ios::in);
+    if (archivo.fail())
+    {
+        cout << "No se pudo abrir el archivo";
+        exit(1);
+    }
+    while (!archivo.eof())
+    {
+        archivo >> cod >> nombre >> ciudad >> pais >> superficie >> cantidadTerminales >> destinosNacionales >> destinosInternacionales;
+        grafo->agregarNodo(new NodoG(cod, ciudad));
+    }
+    archivo.close();
+}
+
+void cargarAristas(Grafo *grafo)
+{
+    ifstream archivo;
+    string linea;
+    string codOrigen, codDestino;
+    double distancia, horasDeViaje;
+    archivo.open("viajes.txt", ios::in);
+    if (archivo.fail())
+    {
+        cout << "No se pudo abrir el archivo";
+        exit(1);
+    }
+
+    while (!archivo.eof())
+    {
+        archivo >> codOrigen >> codDestino >> distancia >> horasDeViaje;
+        grafo->obtenerNodo(codOrigen)->agregarArista(grafo->obtenerNodo(codDestino), distancia, horasDeViaje);
+    }
+    archivo.close();
 }

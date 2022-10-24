@@ -1,20 +1,20 @@
 #include "../Headers/Arista.h"
 
-Arista::Arista(){}
+Arista::Arista() {}
 
-Arista::Arista(NodoG* nodoDestino, double distanciaEntre, double horasDeViaje)
+Arista::Arista(NodoG *nodoDestino, double distanciaEntre, double horasDeViaje)
 {
     destino = nodoDestino;
     distancia = distanciaEntre;
     cantHoras = horasDeViaje;
 }
 
-NodoG* Arista::obtenerDestino()
+NodoG *Arista::obtenerDestino()
 {
     return destino;
 }
 
-void Arista::cambiarDestino(NodoG* nuevoDestino)
+void Arista::cambiarDestino(NodoG *nuevoDestino)
 {
     destino = nuevoDestino;
 }
@@ -29,12 +29,22 @@ void Arista::cambiarDistancia(double nuevaDistancia)
     distancia = nuevaDistancia;
 }
 
-Arista* Arista::obtenerSiguiente()
+Arista *Arista::obtenerSiguiente()
 {
     return siguiente;
 }
 
-void Arista::cambiarSiguiente(Arista* nuevoSiguiente)
+void Arista::cambiarSiguiente(Arista *nuevoSiguiente)
 {
     siguiente = nuevoSiguiente;
+}
+
+double Arista::obtenerHoras()
+{
+    return cantHoras;
+}
+
+void Arista::cambiarHoras(double horas)
+{
+    cantHoras = horas;
 }
