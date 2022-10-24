@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string.h>
+#include <
 
 /*
 Terminales de ómnibus

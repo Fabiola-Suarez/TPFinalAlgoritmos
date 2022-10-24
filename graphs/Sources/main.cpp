@@ -11,18 +11,26 @@ int main()
     NodoG* cord = new NodoG("Cordoba");
     NodoG* ros = new NodoG("Rosario");
     
-    bsas->agregarArista(bsas, cord, 1200);
-    bsas->agregarArista(bsas, ros, 3000);
+    bsas->agregarArista(cord, 1200);
+    bsas->agregarArista(ros, 3000);
 
-    ros->agregarArista(ros, bsas,3000);
+    ros->agregarArista(bsas,3000);
+
+    cord->agregarArista(ros, 200);
     
-    Grafo* grafo;
+    Grafo* grafo = new Grafo();
 
-    grafo->cambiarPrimero(bsas);
+    grafo->agregarNodo(bsas);
     grafo->agregarNodo(cord);
     grafo->agregarNodo(ros);
     grafo->verNodos();
+
+    grafo->eliminarNodo("Cordoba");
     
-    grafo->eliminarNodos();
+
+    cout << "------------Grafo luego de borrar--------------"<<endl;
+    grafo->verNodos();
+    
+    grafo->~Grafo();
     return 0;
 }
