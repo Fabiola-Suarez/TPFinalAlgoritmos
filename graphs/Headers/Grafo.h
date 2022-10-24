@@ -36,6 +36,12 @@ class Grafo
 
         // Libera la memoria
         virtual ~Grafo();
+
+        // Retorna si existe en el grafo el nodo correspondiente a la ciudad.
+        bool existeNodo(string ciudad);
+
+        // Devuelve el nodo correspondiente a la ciudad
+        NodoG* obtenerNodo(string ciudad);
 };
 
 #endif //GRAFO_H_INCLUDED

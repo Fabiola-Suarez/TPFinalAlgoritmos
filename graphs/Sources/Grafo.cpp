@@ -111,3 +111,26 @@ Grafo::~Grafo()
 {
     eliminarNodos();
 }
+
+bool Grafo::existeNodo(string ciudad){
+    NodoG* aux = primero;
+    int i=1;
+    if(numNodos > 0){
+        while(!(aux->obtenerCiudad() == ciudad) && i < numNodos){
+           aux = aux->obtenerSiguiente();
+           i++;
+        }
+    }
+    return aux->obtenerCiudad() == ciudad;
+}
+
+NodoG* Grafo::obtenerNodo(string ciudad) {
+    NodoG* aux;
+    if(existeNodo(ciudad)) {
+        aux = primero;
+        while(!(aux->obtenerCiudad() == ciudad) ){
+           aux = aux->obtenerSiguiente();
+        }
+    }
+    return aux;
+}

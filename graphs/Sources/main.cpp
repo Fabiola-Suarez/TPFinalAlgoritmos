@@ -25,12 +25,10 @@ int main()
     grafo->agregarNodo(ros);
     grafo->verNodos();
 
-    grafo->eliminarNodo("Cordoba");
-    
+    cout << grafo->existeNodo("Buenos Aires") << endl;
 
-    cout << "------------Grafo luego de borrar--------------"<<endl;
-    grafo->verNodos();
-    
+    cout << grafo->obtenerNodo("Misiones")->obtenerCiudad() << endl;
+
     grafo->~Grafo();
     return 0;
 }
