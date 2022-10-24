@@ -18,33 +18,96 @@ void Grafo::cambiarPrimero(NodoG* nuevoPrimero)
 void Grafo::verNodos()
 {   
     NodoG* aux = primero;
-    for(int i=0; i<=numNodos; i++){
+    for(int i=1; i<=numNodos; i++){
         aux->verDatos();
-        aux = aux->obtenerSiguiente();
+        if(!(i == numNodos)){
+            aux = aux->obtenerSiguiente();
+        }
     }
 }
 
 void Grafo::eliminarNodos()
 {
-    while (numNodos != 0){
+    while (numNodos > 0){
         NodoG* borrar = primero;
-        NodoG* aux = borrar->obtenerSiguiente();
+        NodoG* aux;
+        if(numNodos>1){
+            aux = borrar->obtenerSiguiente();
+            primero = aux;
+        }
         borrar->eliminarAristas();
         delete borrar;
-        primero = aux;
         numNodos--;
     }
 }
 
-void Grafo::agregarNodo(NodoG* nodo)
+void Grafo::eliminarNodo(string ciudad) 
 {
-    NodoG* aux = primero;
-    
-    for (int i=0; i<numNodos; i++) {
-        aux = aux->obtenerSiguiente();
+    if(primero->obtenerCiudad() == ciudad){
+        NodoG* borrar = primero;
+        primero = borrar->obtenerSiguiente();
+        borrar->eliminarAristas();
+        eliminarAristasConDestino(ciudad);
+        delete borrar;
+        numNodos--;
+        cout << "Se eliminó el nodo que representaba a " << ciudad << endl;
     }
+    else{
+        if(numNodos > 1){
+            NodoG* anterior = primero;
+            
+            for (int i=1; i<numNodos; i++){
+                NodoG* actual = anterior->obtenerSiguiente();
 
-    aux->cambiarSiguiente(nodo);
+                if(actual->obtenerCiudad() == ciudad){
+                    anterior->cambiarSiguiente(actual->obtenerSiguiente());
+                    actual->eliminarAristas();
+                    eliminarAristasConDestino(ciudad);
+                    delete actual;
+                    numNodos--;
+                    cout << "Se eliminó el nodo que representaba a " << ciudad << endl;
+                }
+                else {
+                    cout << "No se encontró el nodo que representa a " << ciudad << endl;
+                    anterior = anterior->obtenerSiguiente();
+                }
+            }
+        }
+        else {
+            cout << "No se encontró el nodo que representa a " << ciudad << endl;
+        }
+    }
+}
 
-    numNodos++;
+void Grafo::agregarNodo(NodoG* nodo)
+{   
+    if(numNodos==0){
+        primero = nodo;
+        numNodos++;
+    }
+    else{    
+        NodoG* aux = primero;
+        
+        for (int i=1; i<numNodos; i++) {
+            aux = aux->obtenerSiguiente();
+        }
+
+        aux->cambiarSiguiente(nodo);
+
+        numNodos++;
+    }
+}
+
+void Grafo::eliminarAristasConDestino(string destino)
+{
+    NodoG* actual = primero;
+    for(int i=1; i<numNodos; i++){
+        actual->eliminarArista(destino);
+        actual = actual->obtenerSiguiente();
+    }
+}
+
+Grafo::~Grafo()
+{
+    eliminarNodos();
 }

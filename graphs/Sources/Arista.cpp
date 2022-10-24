@@ -2,21 +2,10 @@
 
 Arista::Arista(){}
 
-Arista::Arista(NodoG* nodoOrigen, NodoG* nodoDestino, double distanciaEntre)
+Arista::Arista( NodoG* nodoDestino, double distanciaEntre)
 {
-    origen = nodoOrigen;
     destino = nodoDestino;
     distancia = distanciaEntre;
-}
-
-NodoG* Arista::obtenerOrigen()
-{
-    return origen;
-}
-
-void Arista::cambiarOrigen(NodoG* nuevoOrigen)
-{
-    origen = nuevoOrigen;
 }
 
 NodoG* Arista::obtenerDestino()

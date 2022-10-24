@@ -20,10 +20,9 @@ void NodoG::verDatos()
 {  
     cout << ">>> Nodo: " << ciudad << endl;
     if(numAristas>0){
-        cout << "   Aristas: " << endl;
         Arista arista = *(aristaCabeza);
         for(int i=0; i<numAristas; i++){
-            cout <<"        "<< arista.obtenerOrigen()->obtenerCiudad()  << " -> " << arista.obtenerDestino()->obtenerCiudad() << " = " << arista.obtenerDistancia()<<endl;
+            cout << "       -> " << arista.obtenerDestino()->obtenerCiudad() << " = " << arista.obtenerDistancia()<<endl;
             if(i<numAristas-1){
                 arista = *(arista.obtenerSiguiente());
             }
@@ -34,25 +33,25 @@ void NodoG::verDatos()
     }
 }
 
- NodoG* NodoG::obtenerSiguiente()
- {
+NodoG* NodoG::obtenerSiguiente()
+{
     return siguiente;
- }
+}
 
- void NodoG::cambiarSiguiente(NodoG* nodo)
- {
+void NodoG::cambiarSiguiente(NodoG* nodo)
+{
     siguiente = nodo;
- }
+}
 
-void NodoG::agregarArista(NodoG* nodoOrigen, NodoG* nodoDestino, double distancia)
+void NodoG::agregarArista(NodoG* nodoDestino, double distancia)
 {
     
  
     if(numAristas==0){
-        aristaCabeza = new Arista(nodoOrigen, nodoDestino, distancia);
+        aristaCabeza = new Arista(nodoDestino, distancia);
     } 
     else {
-        Arista* nueva = new Arista(nodoOrigen, nodoDestino, distancia);
+        Arista* nueva = new Arista(nodoDestino, distancia);
         Arista* aux = aristaCabeza;
         
         for(int i=1; i<numAristas; i++){
@@ -66,11 +65,44 @@ void NodoG::agregarArista(NodoG* nodoOrigen, NodoG* nodoDestino, double distanci
 
 void NodoG::eliminarAristas()
 {   
-    while(numAristas != 0){
+    while(numAristas > 0){
         Arista* borrar = aristaCabeza;
-        Arista* aux = aristaCabeza->obtenerSiguiente();
+        Arista* aux;
+        if(numAristas>1){
+            aux = aristaCabeza->obtenerSiguiente();
+            aristaCabeza = aux;
+        }
         delete borrar;
-        aristaCabeza = aux;
         numAristas--;
+    }
+}
+
+void NodoG::eliminarArista(string ciudadDestino)
+{   
+    if(numAristas>0){
+        if(aristaCabeza->obtenerDestino()->obtenerCiudad() == ciudadDestino){
+            Arista* borrar = aristaCabeza;
+            if(numAristas>1){
+                aristaCabeza = borrar->obtenerSiguiente();
+            }
+            delete borrar;
+            numAristas--;
+            cout << "Se elimino la arista con destino " << ciudadDestino << endl;
+        }
+        else {
+            if(numAristas > 1){
+                Arista* anterior = aristaCabeza;
+                for (int i=1; i<numAristas; i++) {
+                    Arista* actual = anterior->obtenerSiguiente();
+
+                    if(actual->obtenerDestino()->obtenerCiudad() == ciudadDestino){
+                        anterior->cambiarSiguiente(actual->obtenerSiguiente());
+                        delete actual;
+                        numAristas--;
+                        cout << "Se elimino la arista con destino " << ciudadDestino << endl;
+                    }
+                }
+            }
+        }
     }
 }
