@@ -38,10 +38,10 @@ class Grafo
         virtual ~Grafo();
 
         // Retorna si existe en el grafo el nodo correspondiente a la ciudad.
-        bool existeNodo(string ciudad);
+        bool existeNodo(string clave);
 
         // Devuelve el nodo correspondiente a la ciudad
-        NodoG* obtenerNodo(string ciudad);
+        NodoG* obtenerNodo(string clave);
 };
 
 #endif //GRAFO_H_INCLUDED

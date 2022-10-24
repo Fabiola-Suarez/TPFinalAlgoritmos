@@ -81,21 +81,23 @@ void Grafo::eliminarNodo(string ciudad)
 
 void Grafo::agregarNodo(NodoG* nodo)
 {   
+    
     if(numNodos==0){
         primero = nodo;
         numNodos++;
     }
-    else{    
-        NodoG* aux = primero;
-        
-        for (int i=1; i<numNodos; i++) {
-            aux = aux->obtenerSiguiente();
-        }
-
-        aux->cambiarSiguiente(nodo);
-
-        numNodos++;
+    else{   
+        if(!existeNodo(nodo->obtenerKey())) {
+            NodoG* aux = primero;
+            
+            for (int i=1; i<numNodos; i++) {
+                aux = aux->obtenerSiguiente();
+            }
+            aux->cambiarSiguiente(nodo);
+            numNodos++;
+        } 
     }
+
 }
 
 void Grafo::eliminarAristasConDestino(string destino)
@@ -112,23 +114,23 @@ Grafo::~Grafo()
     eliminarNodos();
 }
 
-bool Grafo::existeNodo(string ciudad){
+bool Grafo::existeNodo(string clave){
     NodoG* aux = primero;
     int i=1;
     if(numNodos > 0){
-        while(!(aux->obtenerCiudad() == ciudad) && i < numNodos){
+        while(!(aux->obtenerKey() == clave) && i < numNodos){
            aux = aux->obtenerSiguiente();
            i++;
         }
     }
-    return aux->obtenerCiudad() == ciudad;
+    return aux->obtenerKey() == clave;
 }
 
-NodoG* Grafo::obtenerNodo(string ciudad) {
+NodoG* Grafo::obtenerNodo(string clave) {
     NodoG* aux;
-    if(existeNodo(ciudad)) {
+    if(existeNodo(clave)) {
         aux = primero;
-        while(!(aux->obtenerCiudad() == ciudad) ){
+        while(!(aux->obtenerKey() == clave) ){
            aux = aux->obtenerSiguiente();
         }
     }

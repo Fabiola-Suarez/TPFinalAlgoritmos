@@ -1,9 +1,15 @@
 #include "../Headers/NodoG.h"
 #include <iostream>
 
-NodoG::NodoG(string nombreCiudad)
+NodoG::NodoG(string clave, string nombreCiudad)
 {
+    key = clave;
     ciudad = nombreCiudad;
+}
+
+string NodoG::obtenerKey()
+{
+    return key;
 }
 
 string NodoG::obtenerCiudad()
@@ -43,24 +49,24 @@ void NodoG::cambiarSiguiente(NodoG* nodo)
     siguiente = nodo;
 }
 
-void NodoG::agregarArista(NodoG* nodoDestino, double distancia)
+void NodoG::agregarArista(NodoG* nodoDestino, double distancia, double horasDeViaje)
 {
-    
- 
-    if(numAristas==0){
-        aristaCabeza = new Arista(nodoDestino, distancia);
-    } 
-    else {
-        Arista* nueva = new Arista(nodoDestino, distancia);
-        Arista* aux = aristaCabeza;
-        
-        for(int i=1; i<numAristas; i++){
-          aux = aux->obtenerSiguiente();  
-        }
+    if(!existeArista(nodoDestino->obtenerKey())){
+        if(numAristas==0){
+            aristaCabeza = new Arista(nodoDestino, distancia, horasDeViaje);
+        } 
+        else {
+            Arista* nueva = new Arista(nodoDestino, distancia, horasDeViaje);
+            Arista* aux = aristaCabeza;
+            
+            for(int i=1; i<numAristas; i++){
+            aux = aux->obtenerSiguiente();  
+            }
 
-        aux->cambiarSiguiente(nueva);
+            aux->cambiarSiguiente(nueva);
+        }
+        numAristas++;
     }
-    numAristas++;
 }
 
 void NodoG::eliminarAristas()
@@ -105,4 +111,20 @@ void NodoG::eliminarArista(string ciudadDestino)
             }
         }
     }
+}
+
+bool NodoG::existeArista(string claveCiudadDestino)
+{
+    Arista* aux;
+    bool resultado;
+    if(numAristas > 0){
+        aux = aristaCabeza;
+        int i=1;
+        while(!(aux->obtenerDestino()->obtenerKey() == claveCiudadDestino) && i < numAristas){
+            aux = aux->obtenerSiguiente();
+            i++;
+        }
+        resultado = aux->obtenerDestino()->obtenerKey() == claveCiudadDestino;
+    }
+    return resultado;
 }

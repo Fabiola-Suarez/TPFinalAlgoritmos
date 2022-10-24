@@ -7,16 +7,16 @@
 int main()
 {
 
-    NodoG* bsas = new NodoG("Buenos Aires");
-    NodoG* cord = new NodoG("Cordoba");
-    NodoG* ros = new NodoG("Rosario");
+    NodoG* bsas = new NodoG("BSAS", "Buenos Aires");
+    NodoG* cord = new NodoG("COR" ,"Cordoba");
+    NodoG* ros = new NodoG("ROS", "Rosario");
     
-    bsas->agregarArista(cord, 1200);
-    bsas->agregarArista(ros, 3000);
+    bsas->agregarArista(cord, 1200, 1.2);
+    bsas->agregarArista(ros, 3000, 2.4);
 
-    ros->agregarArista(bsas,3000);
+    ros->agregarArista(bsas,3000, 3.2);
 
-    cord->agregarArista(ros, 200);
+    cord->agregarArista(ros, 200, 2.1);
     
     Grafo* grafo = new Grafo();
 
@@ -27,7 +27,9 @@ int main()
 
     cout << grafo->existeNodo("Buenos Aires") << endl;
 
-    cout << grafo->obtenerNodo("Misiones")->obtenerCiudad() << endl;
+    //cout << grafo->obtenerNodo("Misiones")->obtenerCiudad() << endl;
+
+    cout << bsas->existeArista("MIS")<<endl;
 
     grafo->~Grafo();
     return 0;

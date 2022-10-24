@@ -2,10 +2,11 @@
 
 Arista::Arista(){}
 
-Arista::Arista( NodoG* nodoDestino, double distanciaEntre)
+Arista::Arista(NodoG* nodoDestino, double distanciaEntre, double horasDeViaje)
 {
     destino = nodoDestino;
     distancia = distanciaEntre;
+    cantHoras = horasDeViaje;
 }
 
 NodoG* Arista::obtenerDestino()

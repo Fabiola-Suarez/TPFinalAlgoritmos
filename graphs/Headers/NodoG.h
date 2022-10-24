@@ -8,6 +8,7 @@ class Arista;
 class NodoG
 {
     private:
+        string key; // codigo que identifica la ciudad
         string ciudad; // Dato que almacena el nodo
         NodoG* siguiente; // Puntero al nodo siguiente
         Arista* aristaCabeza; // Puntero a la primera arista del nodo
@@ -15,7 +16,10 @@ class NodoG
     public:
         // Constructores
         NodoG();
-        NodoG(string nombreCiudad);
+        NodoG(string clave, string nombreCiudad);
+
+        // Retorna el valor del atributo key
+        string obtenerKey();
 
         // Retorna el valor del atributo ciudad
         string obtenerCiudad();
@@ -38,13 +42,16 @@ class NodoG
         void cambiarSiguiente(NodoG*);
 
         // Crea una nueva arista y la agrega a la lista de aristas del nodo
-        void agregarArista(NodoG* nodoDestino, double distancia);
+        void agregarArista(NodoG* nodoDestino, double distancia, double horasDeViaje);
 
         // Elimina todas las aristas pertenecientes al nodo
         void eliminarAristas();
 
         // Elimina del nodo la arista que lo conecte con ciudadDestino
         void eliminarArista(string ciudadDestino); 
+
+        // Retorna si existe o no la arista en el nodo
+        bool existeArista(string claveCiudadDestino);
 
 };
 
