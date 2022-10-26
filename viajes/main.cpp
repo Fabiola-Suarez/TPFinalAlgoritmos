@@ -13,7 +13,8 @@
 void cargarNodos(Grafo *grafo);
 void cargarAristas(Grafo *grafo);
 void inicializarGrafo(Grafo *grafo);
-void calcularCaminoMinimo(Grafo *grafo) void mostrarMenu();
+void calcularCaminoMinimo(Grafo *grafo);
+void mostrarMenu();
 
 int main()
 {
@@ -34,6 +35,8 @@ int main()
       calcularCaminoMinimo(*grafo);
       break;
     }
+  default:
+    cout << "Numero incorrecto, intente de nuevo por favor"
   } while (opcion != 0);
 
   grafo->~Grafo();
@@ -93,4 +96,5 @@ void mostrarMenuPrincipal(Grafo *grafo))
 {
   cout << "1. Mostrar todos los nodos del grafo" << endl;
   cout << "2. Mostrar Recorrido minimo de un nodo a otro" << endl;
+  cout << "0. Salir" << endl
 }
