@@ -1,6 +1,6 @@
-#include "Grafo.cpp"
-#include "Arista.cpp"
-#include "NodoG.cpp"
+#include "../graphs/Sources/Grafo.cpp"
+#include "../graphs/Sources/Arista.cpp"
+#include "../graphs/Sources/NodoG.cpp"
 #include <windows.h>
 
 #include <iostream>
