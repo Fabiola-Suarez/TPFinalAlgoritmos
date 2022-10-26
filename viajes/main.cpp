@@ -92,7 +92,8 @@ void cargarAristas(Grafo *grafo)
   archivo.close();
 }
 
-void mostrarMenuPrincipal(Grafo *grafo))
+void mostrarMenuPrincipal(Grafo *grafo)
+
 {
   cout << "1. Mostrar todos los nodos del grafo" << endl;
   cout << "2. Mostrar Recorrido minimo de un nodo a otro" << endl;
