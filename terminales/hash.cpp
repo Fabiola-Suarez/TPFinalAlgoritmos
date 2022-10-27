@@ -215,6 +215,8 @@ int main()
     hash.insertar(terminal9);
     hash.displayHash();
     hash.eliminar("SNT");
+    hash.eliminar("CRB");
+    cout << endl;
     hash.displayHash();
     return 0;
 }

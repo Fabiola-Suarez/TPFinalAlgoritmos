@@ -67,6 +67,7 @@ cada uno de los integrantes.
 #include <sstream>
 #include <vector>
 using namespace std;
+#include "hash.cpp"
 
 struct Terminal
 {
@@ -86,12 +87,6 @@ struct Viaje
     string codigoDestino;
     int costoViaje;
     float horasViaje;
-};
-
-struct Hash
-{
-    vector<Terminal> terminales;
-    vector<Viaje> viajes;
 };
 
 void mostrarOpciones();
