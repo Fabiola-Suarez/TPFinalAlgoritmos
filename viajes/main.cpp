@@ -51,6 +51,10 @@ void inicializarGrafo(Grafo *grafo)
 {
   cargarNodos(grafo);
   cargarAristas(grafo);
+  grafo->InicializarMatriz();
+  grafo->verMatriz();
+  grafo->cargarMatrizConAristas();
+  grafo->verMatriz();
 }
 
 void cargarNodos(Grafo *grafo)
@@ -67,10 +71,13 @@ void cargarNodos(Grafo *grafo)
     cout << "No se pudo abrir el archivo";
     exit(1);
   }
+  int i = 0;
   while (!archivo.eof())
   {
     archivo >> cod >> nombre >> ciudad >> pais >> superficie >> cantidadTerminales >> destinosNacionales >> destinosInternacionales;
-    grafo->agregarNodo(new NodoG(cod, ciudad));
+    grafo->agregarNodo(new NodoG(cod, ciudad, i));
+    cout << "nodo numero " << i << endl;
+    i++;
   }
   archivo.close();
 }
@@ -105,5 +112,10 @@ void mostrarMenuPrincipal()
 
 void calcularCaminoMinimo(Grafo *grafo)
 {
-  cout << "ENTRE" << endl;
+  string origen, destino;
+  cout << "Ingrese el codigo del nodo origen: ";
+  cin >> origen;
+  cout << "Ingrese el codigo del nodo destino: ";
+  cin >> destino;
+  grafo->calcularCaminoMinimo(origen, destino);
 }
