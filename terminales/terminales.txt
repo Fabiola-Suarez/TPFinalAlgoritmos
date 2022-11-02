@@ -1,2 +1,5 @@
 RET Terminal_de Retiro Argentina 34.75 4 12 46
-COR Terminal_de Córdoba Argentina 14 9 87 69
+COR Terminal_de Córdoba Argentina 14 9 87 69BSA buenoaires sab sa 0 214 -670100029 32759
+COR terminal_de buenosAires Argentina 23.2 3 2 5
+COR terminalDe Cordoba Argentina 23 123 32 32
+DAD addad dadasd dasd 32 42 23 23

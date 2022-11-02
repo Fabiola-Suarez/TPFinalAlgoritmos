@@ -133,6 +133,11 @@ void mostrarOpciones()
     cout << endl;
 };
 
+/*
+    Dar de alta una termina:
+    Debe agregar una terminal a terminales.txt y a la tabla de hashing de terminales (hash.cpp)
+*/
+
 void darAltaTerminal(vector<Terminal> terminales)
 {
     // deberia agregar la terminal al archivo terminales.txt
