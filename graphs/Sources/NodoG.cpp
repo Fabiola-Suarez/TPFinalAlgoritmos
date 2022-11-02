@@ -1,10 +1,11 @@
 #include "../Headers/NodoG.h"
 #include <iostream>
 
-NodoG::NodoG(string clave, string nombreCiudad)
+NodoG::NodoG(string clave, string nombreCiudad, int indices)
 {
     key = clave;
     ciudad = nombreCiudad;
+    indice = indices;
 }
 
 string NodoG::obtenerKey()
@@ -77,6 +78,16 @@ void NodoG::agregarArista(NodoG *nodoDestino, double distancia, double horasDeVi
     }
 }
 
+int NodoG::obtenerIndice()
+{
+    return indice;
+}
+
+void NodoG::cambiarIndice(int i)
+{
+    indice = i;
+}
+
 void NodoG::eliminarAristas()
 {
     while (numAristas > 0)
@@ -146,4 +157,33 @@ bool NodoG::existeArista(string claveCiudadDestino)
         resultado = aux->obtenerDestino()->obtenerKey() == claveCiudadDestino;
     }
     return resultado;
+}
+
+Arista *NodoG::obtenerAristaCabeza()
+{
+    return aristaCabeza;
+}
+
+void NodoG::cargarMatrizConAristas(int matriz[][100], int choice)
+{
+    cout << "Cargando matriz con aristas de " << ciudad << endl;
+    Arista *aux = aristaCabeza;
+    int contador = 0;
+    // valor de posicion en memoria aux no es nulo
+    while (numAristas > contador)
+    {
+        int indiceOrigen = indice;
+        int indiceDestino = aux->obtenerDestino()->obtenerIndice();
+        if (choice == 1)
+        {
+            matriz[indiceOrigen][indiceDestino] = aux->obtenerDistancia();
+        }
+        else
+        {
+            matriz[indiceOrigen][indiceDestino] = aux->obtenerHoras();
+        }
+        cout << "   -> " << indiceOrigen << " - " << indiceDestino << " = " << matriz[indiceOrigen][indiceDestino] << endl;
+        aux = aux->obtenerSiguiente();
+        contador++;
+    }
 }

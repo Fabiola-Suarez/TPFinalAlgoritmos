@@ -7,3 +7,4 @@ COR Terminal_de Corrientes Argentina 14.16 9 87 69
 SNT Terminal_de Santa_Cruz Argentina 43.3 19 3 9
 MIS Terminal_de Misiones Argentina 38.73 10 3 19
 USU Terminal_de Usuahia Argentina 91.83 9 38 20
+URU Terminal_de Uruguay Uruguay 23 1 5 3
