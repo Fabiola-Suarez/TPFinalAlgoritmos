@@ -60,7 +60,7 @@ public:
 
     Arista *obtenerAristaCabeza();
 
-    void cargarMatrizConAristas(int matriz[][100]);
+    void cargarMatrizConAristas(int matriz[][100], int choice);
 };
 
 #endif // NODE_H_INCLUDED

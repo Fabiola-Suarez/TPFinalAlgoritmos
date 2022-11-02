@@ -53,17 +53,19 @@ public:
     void InicializarMatriz();
 
     // Retorna el nodo correspondiente a la ciudad
-    void cargarMatrizConAristas();
+    void cargarMatrizConAristas(int opcion);
 
     void verMatriz();
 
     void calcularCaminoMinimo(string origen, string destino);
 
-    void printSolution(int dist[]);
+    void printSolution(int dist[], int parent[], int destino);
 
-    void dijkstra(int src);
+    void dijkstra(int src, int destiny);
 
     int minimumDist(int dist[], bool sptSet[]);
+
+    NodoG *obtenerNodoPorPosicion(int pos);
 };
 
 #endif // GRAFO_H_INCLUDED

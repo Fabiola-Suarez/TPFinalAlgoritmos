@@ -164,7 +164,7 @@ Arista *NodoG::obtenerAristaCabeza()
     return aristaCabeza;
 }
 
-void NodoG::cargarMatrizConAristas(int matriz[][100])
+void NodoG::cargarMatrizConAristas(int matriz[][100], int choice)
 {
     cout << "Cargando matriz con aristas de " << ciudad << endl;
     Arista *aux = aristaCabeza;
@@ -174,7 +174,14 @@ void NodoG::cargarMatrizConAristas(int matriz[][100])
     {
         int indiceOrigen = indice;
         int indiceDestino = aux->obtenerDestino()->obtenerIndice();
-        matriz[indiceOrigen][indiceDestino] = aux->obtenerDistancia();
+        if (choice == 1)
+        {
+            matriz[indiceOrigen][indiceDestino] = aux->obtenerDistancia();
+        }
+        else
+        {
+            matriz[indiceOrigen][indiceDestino] = aux->obtenerHoras();
+        }
         cout << "   -> " << indiceOrigen << " - " << indiceDestino << " = " << matriz[indiceOrigen][indiceDestino] << endl;
         aux = aux->obtenerSiguiente();
         contador++;
