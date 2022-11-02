@@ -164,7 +164,7 @@ NodoG *Grafo::obtenerNodo(string clave)
 NodoG *Grafo::obtenerNodoPorPosicion(int pos)
 {
     NodoG *aux = primero;
-    for (int i = 1; i < pos; i++)
+    for (int i = 0; i < pos; i++)
     {
         aux = aux->obtenerSiguiente();
     }
@@ -236,20 +236,34 @@ int Grafo::minimumDist(int dist[], bool sptSet[])
 
 // A utility function to print the constructed distance
 // array
-void Grafo::printSolution(int dist[], int parent[], int destino)
+void Grafo::printSolution(int dist[], int parent[], int origen, int destino)
 {
-    string ciudadNodo = obtenerNodoPorPosicion(0)->obtenerCiudad();
-    cout << ciudadNodo << endl;
-    ciudadNodo = obtenerNodoPorPosicion(1)->obtenerCiudad();
-    cout << ciudadNodo << endl;
+    NodoG *NodoOrigen = obtenerNodoPorPosicion(origen);
+    NodoG *NodoDestino = obtenerNodoPorPosicion(destino);
+    int res = dist[destino];
+    int i = destino;
+    string camino = "";
+    string ciudadPadre = "";
 
-    for (int i = 0; i < numNodos; i++)
+    cout << "La distancia más corta entre " << NodoOrigen->obtenerCiudad() << " y " << NodoDestino->obtenerCiudad() << " es " << res << endl;
+    cout << "El camino más corto es: " << endl;
+    cout << NodoDestino->obtenerCiudad();
+
+    if (res != INF && res != 0)
     {
-        ciudadNodo = obtenerNodoPorPosicion(i)->obtenerCiudad();
-        cout << ciudadNodo << " \t\t\t\t\t" << dist[i] << endl;
+        while (parent[i] != origen)
+        {
+            ciudadPadre = obtenerNodoPorPosicion(parent[i])->obtenerCiudad();
+            camino = camino + " <- " + ciudadPadre;
+            i = parent[i];
+        }
+        camino = camino + " <- " + NodoOrigen->obtenerCiudad();
+        cout << camino << endl;
     }
-
-    cout << "Los padres son: " << endl;
+    else
+    {
+        cout << "No existe camino entre " << NodoOrigen->obtenerCiudad() << " y " << NodoDestino->obtenerCiudad() << endl;
+    }
 }
 
 // Function that implements Dijkstra's single source
@@ -304,7 +318,7 @@ void Grafo::dijkstra(int src, int destiny)
     }
 
     // print the constructed distance array
-    printSolution(dist, parent, destiny);
+    printSolution(dist, parent, src, destiny);
 }
 
 void Grafo::calcularCaminoMinimo(string origen, string destino)
@@ -314,6 +328,12 @@ void Grafo::calcularCaminoMinimo(string origen, string destino)
     {
         origen[i] = toupper(origen[i]);
     }
+
+    for (int i = 0; i < destino.length(); i++)
+    {
+        destino[i] = toupper(destino[i]);
+    }
+
     int indexOrigen = obtenerNodo(origen)->obtenerIndice();
     int indexDestino = obtenerNodo(destino)->obtenerIndice();
     dijkstra(indexOrigen, indexDestino);

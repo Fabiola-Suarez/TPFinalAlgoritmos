@@ -59,7 +59,7 @@ public:
 
     void calcularCaminoMinimo(string origen, string destino);
 
-    void printSolution(int dist[], int parent[], int destino);
+    void printSolution(int dist[], int parent[], int origen, int destino);
 
     void dijkstra(int src, int destiny);
 

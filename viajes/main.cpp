@@ -88,7 +88,6 @@ void cargarNodos(Grafo *grafo)
     cout << "nodo numero " << i << "| " << ciudad << endl;
     i++;
   }
-  cout << "ASFOASFPONAPOFNAPSFNSA" << grafo->obtenerNodoPorPosicion(0)->obtenerCiudad() << endl;
   archivo.close();
 }
 
