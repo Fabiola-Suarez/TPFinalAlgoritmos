@@ -58,6 +58,12 @@ public:
     void verMatriz();
 
     void calcularCaminoMinimo(string origen, string destino);
+
+    void printSolution(int dist[]);
+
+    void dijkstra(int src);
+
+    int minimumDist(int dist[], bool sptSet[]);
 };
 
 #endif // GRAFO_H_INCLUDED

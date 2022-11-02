@@ -52,7 +52,6 @@ void inicializarGrafo(Grafo *grafo)
   cargarNodos(grafo);
   cargarAristas(grafo);
   grafo->InicializarMatriz();
-  grafo->verMatriz();
   grafo->cargarMatrizConAristas();
   grafo->verMatriz();
 }
@@ -105,9 +104,11 @@ void cargarAristas(Grafo *grafo)
 
 void mostrarMenuPrincipal()
 {
+  cout << ' ' << endl;
   cout << "1. Mostrar todos los nodos del grafo" << endl;
   cout << "2. Mostrar Recorrido minimo de un nodo a otro" << endl;
   cout << "0. Salir" << endl;
+  cout << ' ' << endl;
 }
 
 void calcularCaminoMinimo(Grafo *grafo)
