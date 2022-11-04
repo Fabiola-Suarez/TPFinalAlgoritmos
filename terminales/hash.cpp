@@ -74,7 +74,6 @@ public:
             posicion = (posicion + i ^ (i + 1)) % capacidad;
             i++;
         }
-        i = 0;
 
         return posicion;
     }
@@ -95,6 +94,7 @@ void HashTable::insertar(Terminal terminal)
     tabla[index].push_back(terminal);
 }
 
+// No funciona el eliminar
 void HashTable::eliminar(string codigo)
 {
     int index = hashFunction(codigo);
@@ -119,7 +119,7 @@ void HashTable::displayHash()
         cout << endl;
     }
 }
-
+// No funciona el buscar
 void HashTable::buscar(string codigo)
 {
     int index = hashFunction(codigo);
@@ -135,9 +135,8 @@ void HashTable::buscar(string codigo)
             cout << "Cantidad de terminales: " << tabla[index][i].cantidadTerminales << endl;
             cout << "Destinos nacionales: " << tabla[index][i].destinosNacionales << endl;
             cout << "Destinos internacionales: " << tabla[index][i].destinosInternacionales << endl;
-            cout << endl;
-            return;
         }
     }
-    cout << "No se encontro la terminal" << endl;
+
+    cout << "No se encontro el codigo ingresado" << endl;
 }

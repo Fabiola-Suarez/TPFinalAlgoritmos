@@ -6,6 +6,9 @@
 using namespace std;
 #include "hash.cpp"
 
+// mostrar opciones
+void mostrarOpciones();
+
 // inicializar tabla hash a partir de la clase HashTable
 HashTable tablaHash(30);
 
@@ -67,6 +70,7 @@ void mostrarTerminal()
         codigo[i] = toupper(codigo[i]);
     }
     tablaHash.buscar(codigo);
+    mostrarOpciones();
 }
 
 // mostrar opciones de menu con switch
@@ -96,13 +100,26 @@ void mostrarOpciones()
         break;
     default:
         cout << "Opcion invalida" << endl;
+        mostrarOpciones();
         break;
     }
 }
 
 int main()
 {
+    // leer terminales.txt y agregarlas a la tabla hash
+    ifstream terminalesFile;
+    terminalesFile.open("terminales.txt");
+    string line;
+    while (getline(terminalesFile, line))
+    {
+        Terminal terminal;
+        istringstream iss(line);
+        iss >> terminal.codigo >> terminal.nombre >> terminal.ciudad >> terminal.pais >> terminal.superficie >> terminal.cantidadTerminales >> terminal.destinosNacionales >> terminal.destinosInternacionales;
+        tablaHash.insertar(terminal);
+    }
+    terminalesFile.close();
 
-    tablaHash.displayHash();
+    mostrarOpciones();
     return 0;
 }
