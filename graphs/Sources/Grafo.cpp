@@ -1,4 +1,8 @@
 #include "../Headers/Grafo.h"
+#include <iostream>
+#include <limits.h>
+
+using namespace std;
 #define MAX_NODES 100
 #define INF 99999999
 
@@ -187,8 +191,6 @@ void Grafo::cargarMatrizConAristas(int opcion)
     NodoG *aux = primero;
     for (int i = 1; i <= numNodos; i++)
     {
-        cout << "Cargando aristas del nodo " << aux->obtenerCiudad() << endl;
-
         aux->cargarMatrizConAristas(matriz, opcion);
         if (!(i == numNodos))
         {
@@ -209,43 +211,38 @@ void Grafo::verMatriz()
     }
 }
 
-// C++ program for Dijkstra's single source shortest path
-// algorithm. The program is for adjacency matrix
-// representation of the graph
-#include <iostream>
-using namespace std;
-#include <limits.h>
-
-// Number of vertices in the graph
-
-// A utility function to find the vertex with minimum
-// distance value, from the set of vertices not yet included
-// in shortest path tree
-int Grafo::minimumDist(int dist[], bool sptSet[])
+// Encontrar el vértice con mínimo valor de la distancia, del conjunto 
+// de vértices aún no visitados en el árbol de la ruta más corta
+int Grafo::minimumDist(double peso[], bool visitados[])
 {
-
-    // Initialize min value
+    
     int min = INF, min_index;
 
     for (int v = 0; v < numNodos; v++)
-        if (sptSet[v] == false && dist[v] <= min)
-            min = dist[v], min_index = v;
+        if (visitados[v] == false && peso[v] <= min)
+            min = peso[v], min_index = v;
 
     return min_index;
 }
 
-// A utility function to print the constructed distance
-// array
-void Grafo::printSolution(int dist[], int parent[], int origen, int destino)
+void Grafo::printSolution(double peso[], int parent[], int origen, int destino, int choice)
 {
     NodoG *NodoOrigen = obtenerNodoPorPosicion(origen);
     NodoG *NodoDestino = obtenerNodoPorPosicion(destino);
-    int res = dist[destino];
+    double res = peso[destino];
     int i = destino;
     string camino = "";
     string ciudadPadre = "";
 
-    cout << "La distancia más corta entre " << NodoOrigen->obtenerCiudad() << " y " << NodoDestino->obtenerCiudad() << " es " << res << endl;
+    if(choice == 1) 
+    {
+        cout << "La distancia más corta entre " << NodoOrigen->obtenerCiudad() << " y " << NodoDestino->obtenerCiudad() << " es " << int(res) << endl;
+    }
+    else 
+    {
+        cout << "La ruta con menor tiempo entre " << NodoOrigen->obtenerCiudad() << " y " << NodoDestino->obtenerCiudad() << " es de " << res << " horas." << endl;
+    }
+    
     cout << "El camino más corto es: " << endl;
     cout << NodoDestino->obtenerCiudad();
 
@@ -269,9 +266,9 @@ void Grafo::printSolution(int dist[], int parent[], int origen, int destino)
 // Function that implements Dijkstra's single source
 // shortest path algorithm for a graph represented using
 // adjacency matrix representation
-void Grafo::dijkstra(int src, int destiny)
+void Grafo::dijkstra(int src, int destiny, int choice)
 {
-    int dist[MAX_NODES]; // The output array.  dist[i] will hold the
+    double peso[MAX_NODES]; // The output array.  dist[i] will hold the
                          // shortest
     // distance from src to i
 
@@ -285,10 +282,10 @@ void Grafo::dijkstra(int src, int destiny)
     // Initialize all distances as INFINITE and stpSet[] as
     // false
     for (int i = 0; i < MAX_NODES; i++)
-        dist[i] = INF, sptSet[i] = false;
+        peso[i] = INF, sptSet[i] = false;
 
     // Distance of source vertex from itself is always 0
-    dist[src] = 0;
+    peso[src] = 0;
 
     // Find shortest path for all vertices
     for (int count = 0; count < MAX_NODES - 1; count++)
@@ -296,7 +293,7 @@ void Grafo::dijkstra(int src, int destiny)
         // Pick the minimum distance vertex from the set of
         // vertices not yet processed. u is always equal to
         // src in the first iteration.
-        int u = minimumDist(dist, sptSet);
+        int u = minimumDist(peso, sptSet);
 
         // Mark the picked vertex as processed
         sptSet[u] = true;
@@ -310,18 +307,18 @@ void Grafo::dijkstra(int src, int destiny)
             // there is an edge from u to v, and total
             // weight of path from src to  v through u is
             // smaller than current value of dist[v]
-            if (!sptSet[v] && matriz[u][v] && dist[u] != INT_MAX && dist[u] + matriz[u][v] < dist[v])
+            if (!sptSet[v] && matriz[u][v] && peso[u] != INT_MAX && peso[u] + matriz[u][v] < peso[v])
             {
-                dist[v] = dist[u] + matriz[u][v];
+                peso[v] = peso[u] + matriz[u][v];
                 parent[v] = u;
             }
     }
 
     // print the constructed distance array
-    printSolution(dist, parent, src, destiny);
+    printSolution(peso, parent, src, destiny, choice);
 }
 
-void Grafo::calcularCaminoMinimo(string origen, string destino)
+void Grafo::calcularCaminoMinimo(string origen, string destino, int choice)
 {
     // origen a MAYUSCULAS
     for (int i = 0; i < origen.length(); i++)
@@ -336,5 +333,5 @@ void Grafo::calcularCaminoMinimo(string origen, string destino)
 
     int indexOrigen = obtenerNodo(origen)->obtenerIndice();
     int indexDestino = obtenerNodo(destino)->obtenerIndice();
-    dijkstra(indexOrigen, indexDestino);
+    dijkstra(indexOrigen, indexDestino, choice);
 }

@@ -51,11 +51,9 @@ void inicializarGrafo(Grafo *grafo)
 {
   cargarNodos(grafo);
   cargarAristas(grafo);
-  grafo->InicializarMatriz();
-  grafo->cargarMatrizConAristas(1);
 }
 
-void reiniciarGrafo(Grafo *grafo)
+int reiniciarGrafo(Grafo *grafo)
 {
   int opcion;
   cout << "Cargar Grafo de aristas segun..." << endl;
@@ -64,6 +62,7 @@ void reiniciarGrafo(Grafo *grafo)
   cin >> opcion;
   grafo->InicializarMatriz();
   grafo->cargarMatrizConAristas(opcion);
+  return opcion;
 }
 
 void cargarNodos(Grafo *grafo)
@@ -85,7 +84,6 @@ void cargarNodos(Grafo *grafo)
   {
     archivo >> cod >> nombre >> ciudad >> pais >> superficie >> cantidadTerminales >> destinosNacionales >> destinosInternacionales;
     grafo->agregarNodo(new NodoG(cod, ciudad, i));
-    cout << "nodo numero " << i << "| " << ciudad << endl;
     i++;
   }
   archivo.close();
@@ -128,6 +126,6 @@ void calcularCaminoMinimo(Grafo *grafo)
   cin >> origen;
   cout << "Ingrese el codigo del nodo destino: ";
   cin >> destino;
-  reiniciarGrafo(grafo);
-  grafo->calcularCaminoMinimo(origen, destino);
+  int choice = reiniciarGrafo(grafo);
+  grafo->calcularCaminoMinimo(origen, destino, choice);
 }

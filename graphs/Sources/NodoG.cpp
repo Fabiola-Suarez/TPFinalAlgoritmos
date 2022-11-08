@@ -164,9 +164,8 @@ Arista *NodoG::obtenerAristaCabeza()
     return aristaCabeza;
 }
 
-void NodoG::cargarMatrizConAristas(int matriz[][100], int choice)
+void NodoG::cargarMatrizConAristas(double matriz[][100], int choice)
 {
-    cout << "Cargando matriz con aristas de " << ciudad << endl;
     Arista *aux = aristaCabeza;
     int contador = 0;
     // valor de posicion en memoria aux no es nulo

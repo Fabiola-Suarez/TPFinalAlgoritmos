@@ -9,7 +9,7 @@ class Grafo
 private:
     NodoG *primero;                   // Puntero al primer nodo del grafo
     int numNodos;                     // Cantidad de nodos que contiene el grafo
-    int matriz[MAX_NODES][MAX_NODES]; // Matriz de adyacencia
+    double matriz[MAX_NODES][MAX_NODES]; // Matriz de adyacencia
 public:
     // Constructor
     Grafo();
@@ -57,13 +57,13 @@ public:
 
     void verMatriz();
 
-    void calcularCaminoMinimo(string origen, string destino);
+    void calcularCaminoMinimo(string origen, string destino, int opcion);
 
-    void printSolution(int dist[], int parent[], int origen, int destino);
+    void printSolution(double peso[], int parent[], int origen, int destino, int choice);
 
-    void dijkstra(int src, int destiny);
+    void dijkstra(int src, int destiny, int choice);
 
-    int minimumDist(int dist[], bool sptSet[]);
+    int minimumDist(double peso[], bool visitados[]);
 
     NodoG *obtenerNodoPorPosicion(int pos);
 };
