@@ -264,30 +264,21 @@ void Grafo::printSolution(double peso[], int parent[], int origen, int destino, 
     }
 }
 
-<<<<<<< HEAD
-// Function that implements Dijkstra's single source
-// shortest path algorithm for a graph represented using
-// adjacency matrix representation|
-=======
 // Función que implementa el algoritmo Dijkstra
 // de ruta más corta para un gráfico representado usando
 // representación de la matriz de adyacencia
->>>>>>> da2d1d50746385af05ff28a2602d1252c38c3504
 void Grafo::dijkstra(int src, int destiny, int choice)
 {
-    double peso[MAX_NODES]; // The output array.  dist[i] will hold the
-                            // shortest
-    // distance from src to i
+    // La matriz de salida dist[i] mantendrá la distancia más corta de src a i
+    double peso[MAX_NODES]; 
 
-    bool sptSet[MAX_NODES]; // sptSet[i] will be true if vertex i is
-                            // included in shortest
-    // path tree or shortest distance from src to i is
-    // finalized
+    // sptSet[i] será verdadero si el vértice i se incluye en el árbol de rutas más cortas
+    // o se finaliza la distancia más corta desde src hasta i
+    bool sptSet[MAX_NODES]; 
 
     int parent[MAX_NODES];
 
-    // Initialize all distances as INFINITE and stpSet[] as
-    // false
+    // Inicializa todas las distancias como INFINITE y stpSet [] como false
     for (int i = 0; i < MAX_NODES; i++)
         peso[i] = INF, sptSet[i] = false;
 
