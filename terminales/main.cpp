@@ -178,7 +178,7 @@ int main()
         tablaHash.insertar(terminal);
     }
     terminalesFile.close();
-
     mostrarOpciones();
+    tablaHash->~HashTable();
     return 0;
 }

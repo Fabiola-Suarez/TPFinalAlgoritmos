@@ -171,3 +171,9 @@ void HashTable::buscar(string codigo)
         }
     }
 }
+//liberar memoria
+HashTable::~HashTable()
+{
+    delete tabla;
+    
+}
