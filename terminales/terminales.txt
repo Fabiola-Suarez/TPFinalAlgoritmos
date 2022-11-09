@@ -1,2 +1,9 @@
-RET Terminal_de Retiro Argentina 34.75 4 12 46
-COR Terminal_de Córdoba Argentina 14 9 87 69
+JUJ Terminal_de Jujuy Argentina 10.10 39 1 9
+SAL Terminal_de Salta Argentina 33.19 4 10 36
+ROS Terminal_de Rosario Argentina 19.53 3 19 31
+CRB Terminal_de Cordoba Argentina 24.00 8 10 38
+BUE Terminal_de Buenos_Aires Argentina 37.82 10 37 28
+COR Terminal_de Corrientes Argentina 14.16 9 87 69
+SNT Terminal_de Santa_Cruz Argentina 43.3 19 3 9
+MIS Terminal_de Misiones Argentina 38.73 10 3 19
+USU Terminal_de Usuahia Argentina 91.83 9 38 20

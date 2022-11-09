@@ -67,6 +67,7 @@ cada uno de los integrantes.
 #include <sstream>
 #include <vector>
 using namespace std;
+#include "hash.cpp"
 
 struct Terminal
 {
@@ -86,12 +87,6 @@ struct Viaje
     string codigoDestino;
     int costoViaje;
     float horasViaje;
-};
-
-struct Hash
-{
-    vector<Terminal> terminales;
-    vector<Viaje> viajes;
 };
 
 void mostrarOpciones();
@@ -137,6 +132,11 @@ void mostrarOpciones()
     cout << "5. Salir" << endl;
     cout << endl;
 };
+
+/*
+    Dar de alta una termina:
+    Debe agregar una terminal a terminales.txt y a la tabla de hashing de terminales (hash.cpp)
+*/
 
 void darAltaTerminal(vector<Terminal> terminales)
 {
