@@ -60,7 +60,6 @@ public:
     int hashFunction(string codigo)
     {
         int posicion = 0;
-        int i = 0;
         int codigoInt = 0;
         for (int i = 0; i < codigo.size(); i++)
         {
@@ -68,12 +67,6 @@ public:
         }
 
         posicion = codigoInt % capacidad;
-
-        while (tabla[posicion].size() != 0)
-        {
-            posicion = (posicion + i ^ (i + 1)) % capacidad;
-            i++;
-        }
 
         return posicion;
     }
@@ -90,19 +83,45 @@ HashTable::HashTable(int b)
 
 void HashTable::insertar(Terminal terminal)
 {
+    int i = 1;
     int index = hashFunction(terminal.codigo);
-    tabla[index].push_back(terminal);
+    if (tabla[index].size() == 0)
+    {
+        tabla[index].push_back(terminal);
+    }
+    else
+    {
+        while (tabla[index].size() != 0)
+        {
+            index = index + i ^ 2;
+            i++;
+        }
+        tabla[index].push_back(terminal);
+    }
 }
 
-// No funciona el eliminar
 void HashTable::eliminar(string codigo)
 {
     int index = hashFunction(codigo);
-    for (int i = 0; i < tabla[index].size(); i++)
+    int i = 1;
+    if (tabla[index].size() == 0)
     {
-        if (tabla[index][i].codigo == codigo)
+        cout << "No existe la terminal" << endl;
+    }
+    else
+    {
+        while (tabla[index].size() != 0)
         {
-            tabla[index].erase(tabla[index].begin() + i);
+            if (tabla[index][0].codigo == codigo)
+            {
+                tabla[index].erase(tabla[index].begin());
+                cout << "Terminal eliminada con exito!" << endl;
+            }
+            else
+            {
+                index = index + i ^ 2;
+                i++;
+            }
         }
     }
 }
@@ -119,24 +138,36 @@ void HashTable::displayHash()
         cout << endl;
     }
 }
-// No funciona el buscar
+
 void HashTable::buscar(string codigo)
 {
     int index = hashFunction(codigo);
-    for (int i = 0; i < tabla[index].size(); i++)
+    int i = 1;
+    if (tabla[index].size() == 0)
     {
-        if (tabla[index][i].codigo == codigo)
+        cout << "No existe la terminal" << endl;
+    }
+    else
+    {
+        while (tabla[index].size() != 0)
         {
-            cout << "Codigo: " << tabla[index][i].codigo << endl;
-            cout << "Nombre: " << tabla[index][i].nombre << endl;
-            cout << "Ciudad: " << tabla[index][i].ciudad << endl;
-            cout << "Pais: " << tabla[index][i].pais << endl;
-            cout << "Superficie: " << tabla[index][i].superficie << endl;
-            cout << "Cantidad de terminales: " << tabla[index][i].cantidadTerminales << endl;
-            cout << "Destinos nacionales: " << tabla[index][i].destinosNacionales << endl;
-            cout << "Destinos internacionales: " << tabla[index][i].destinosInternacionales << endl;
+            if (tabla[index][0].codigo == codigo)
+            {
+                cout << "Codigo: " << tabla[index][0].codigo << endl;
+                cout << "Nombre: " << tabla[index][0].nombre << endl;
+                cout << "Ciudad: " << tabla[index][0].ciudad << endl;
+                cout << "Pais: " << tabla[index][0].pais << endl;
+                cout << "Superficie: " << tabla[index][0].superficie << endl;
+                cout << "Cantidad de terminales: " << tabla[index][0].cantidadTerminales << endl;
+                cout << "Destinos nacionales: " << tabla[index][0].destinosNacionales << endl;
+                cout << "Destinos internacionales: " << tabla[index][0].destinosInternacionales << endl;
+                break;
+            }
+            else
+            {
+                index = index + i ^ 2;
+                i++;
+            }
         }
     }
-
-    cout << "No se encontro el codigo ingresado" << endl;
 }
