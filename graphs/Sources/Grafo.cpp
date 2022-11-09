@@ -225,6 +225,7 @@ int Grafo::minimumDist(double peso[], bool visitados[])
     return min_index;
 }
 
+// imprime la matriz de distancia construida
 void Grafo::printSolution(double peso[], int parent[], int origen, int destino, int choice)
 {
     NodoG *NodoOrigen = obtenerNodoPorPosicion(origen);
@@ -263,9 +264,9 @@ void Grafo::printSolution(double peso[], int parent[], int origen, int destino, 
     }
 }
 
-// Function that implements Dijkstra's single source
-// shortest path algorithm for a graph represented using
-// adjacency matrix representation
+// Función que implementa el algoritmo Dijkstra
+// de ruta más corta para un gráfico representado usando
+// representación de la matriz de adyacencia
 void Grafo::dijkstra(int src, int destiny, int choice)
 {
     double peso[MAX_NODES]; // The output array.  dist[i] will hold the
@@ -314,7 +315,7 @@ void Grafo::dijkstra(int src, int destiny, int choice)
             }
     }
 
-    // print the constructed distance array
+    // imprime la matriz de distancia construida
     printSolution(peso, parent, src, destiny, choice);
 }
 
