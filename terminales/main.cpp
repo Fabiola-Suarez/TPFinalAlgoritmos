@@ -45,7 +45,7 @@ void darDeAltaTerminal()
     // agregar terminal a terminales.txt
     ofstream terminalesFile;
     terminalesFile.open("terminales.txt", ios::app);
-    terminalesFile << terminal.codigo << " " << terminal.nombre << " " << terminal.ciudad << " " << terminal.pais << " " << terminal.superficie << " " << terminal.cantidadTerminales << " " << terminal.destinosNacionales << " " << terminal.destinosInternacionales << endl;
+    terminalesFile << endl << terminal.codigo << " " << terminal.nombre << " " << terminal.ciudad << " " << terminal.pais << " " << terminal.superficie << " " << terminal.cantidadTerminales << " " << terminal.destinosNacionales << " " << terminal.destinosInternacionales;
     terminalesFile.close();
 
     mostrarOpciones();
@@ -179,6 +179,5 @@ int main()
     }
     terminalesFile.close();
     mostrarOpciones();
-    tablaHash->~HashTable();
     return 0;
 }

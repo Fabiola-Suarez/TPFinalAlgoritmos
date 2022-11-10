@@ -22,7 +22,7 @@ class HashTable
     int capacidad;
     vector<Terminal> *tabla;
 
-public:
+    public:
     HashTable(int V);
     void insertar(Terminal terminal);
     void eliminar(string codigo);
@@ -73,6 +73,7 @@ public:
 
     void displayHash();
     void buscar(string codigo);
+
 };
 
 HashTable::HashTable(int b)
@@ -170,10 +171,4 @@ void HashTable::buscar(string codigo)
             }
         }
     }
-}
-//liberar memoria
-HashTable::~HashTable()
-{
-    delete tabla;
-    
 }
