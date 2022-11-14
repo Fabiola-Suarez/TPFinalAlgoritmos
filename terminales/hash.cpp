@@ -22,10 +22,14 @@ class HashTable
     int capacidad;
     vector<Terminal> *tabla;
 
-public:
+    public:
     HashTable(int V);
     void insertar(Terminal terminal);
     void eliminar(string codigo);
+    void eliminarTabla();
+    void displayHash();
+    void buscar(string codigo);
+    virtual ~HashTable();
 
     int checkPrime(int n)
     {
@@ -70,9 +74,6 @@ public:
 
         return posicion;
     }
-
-    void displayHash();
-    void buscar(string codigo);
 };
 
 HashTable::HashTable(int b)
@@ -124,6 +125,22 @@ void HashTable::eliminar(string codigo)
             }
         }
     }
+}
+
+void HashTable::eliminarTabla()
+{
+    int capacidadTabla = capacidad;
+    while (capacidadTabla != 0)
+    {
+        tabla[capacidadTabla].clear();
+        capacidadTabla--;   
+        
+    }
+}
+
+HashTable::~HashTable()
+{
+   eliminarTabla();
 }
 
 void HashTable::displayHash()
