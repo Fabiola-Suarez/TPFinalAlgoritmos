@@ -179,5 +179,7 @@ int main()
     }
     terminalesFile.close();
     mostrarOpciones();
+    
+    tablaHash.~HashTable();
     return 0;
 }
