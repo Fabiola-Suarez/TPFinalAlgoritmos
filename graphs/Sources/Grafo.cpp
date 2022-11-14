@@ -5,7 +5,7 @@
 using namespace std;
 #define MAX_NODES 100
 #define INF 99999999
-
+    
 Grafo::Grafo()
 {
     numNodos = 0;
